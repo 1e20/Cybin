@@ -37,3 +37,4 @@ function Chance:Rotater(Data)
     return Rotater;
 end; 
 
+return Chance;
