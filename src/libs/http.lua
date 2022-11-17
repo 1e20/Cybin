@@ -1,12 +1,15 @@
 local Http = {};
+Http.Directory = '1e20/Cybin/main/';
+Http.__Host = 'https://raw.githubusercontent.com/';
 
-local Root = 'https://raw.githubusercontent.com/';
-local Branch = '1e20/Cybin/main/';
-
-function Http:Import(Directory, As)
-    local Data = loadstring(game:HttpGet(Root .. Branch .. Directory))();
-    getgenv()[As] = Data;
+function Http:Import(PaTh, As)
+    local Data = loadstring(game:HttpGet(self.__Host .. self.Directory .. Directory))();
+    if (As) then getgenv()[As] = Data; end;
     return Data;
 end;
+
+function Http:SetDirectory(Directory)
+    self.Directory = Directory;
+end; 
 
 return Http;
