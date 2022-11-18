@@ -1,4 +1,5 @@
-local Chance = {};
+local Chance, __Chance = {}, newproxy(true);
+getmetatable(__Chance).__index = Chance;
 Chance.Sleep = task.wait;
 
 function Chance:PercentChance(Percent, Min, Max)
@@ -37,4 +38,4 @@ function Chance:Rotater(Data)
     return Rotater;
 end; 
 
-return Chance;
+return __Chance;
