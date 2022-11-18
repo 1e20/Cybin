@@ -2,8 +2,8 @@ local UserInputService = game:GetService('UserInputService');
 local Vector2 = Vector2.new;
 local Sleep = task.wait;
 
-local Mouse, _Mouse = {}, newproxy(true);
-getmetatable(_Mouse).__index = Mouse;
+local Mouse, __Mouse = {}, newproxy(true);
+getmetatable(__Mouse).__index = Mouse;
 Mouse.Position = UserInputService:GetMouseLocation();
 
 function Mouse:Move(Position, Step) Step = Step or 1
@@ -45,4 +45,4 @@ Mouse.ChangedListener = UserInputService.InputChanged:Connect(function(Input)
     end; 
 end);
 
-return _Mouse;
+return __Mouse;
