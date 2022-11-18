@@ -2,11 +2,12 @@ local UserInputService = game:GetService('UserInputService');
 local Vector2 = Vector2.new;
 local Sleep = task.wait;
 
-local Mouse = {};
+local Mouse, _Mouse = {}, newproxy(true);
+getmetatable(_Mouse).__index = Mouse;
 Mouse.Position = UserInputService:GetMouseLocation();
 
-function Mouse:Move(Position, Smoothness) Smoothness = Smoothness or 1
-    mousemoverel((Position.X - self.Position.X) / Smoothness, (Position.Y - self.Position.Y) / Smoothness);
+function Mouse:Move(Position, Step) Step = Step or 1
+    mousemoverel((Position.X - self.Position.X) / Step, (Position.Y - self.Position.Y) / Step);
 end;
 
 -- // Spring
@@ -26,14 +27,14 @@ function Mouse.Spring:Update()
     self.Position = Vector2(self.Position.X + self.VelocityX, self.Position.Y + self.VelocityY)
 end; 
 
-function Mouse.Spring:Move(Position, Smoothness) Smoothness = Smoothness or 1
+function Mouse.Spring:Move(Position, Step) Step = Step or 1
     self.TargetPosition = Position;
     self.Position = Mouse.Position;
     self:Update();
 
     mousemoverel(
-        (self.Position.X - Mouse.Position.X) / Smoothness,
-        (self.Position.Y - Mouse.Position.Y) / Smoothness
+        (self.Position.X - Mouse.Position.X) / Step,
+        (self.Position.Y - Mouse.Position.Y) / Step
     );
 end; 
 
@@ -44,4 +45,4 @@ Mouse.ChangedListener = UserInputService.InputChanged:Connect(function(Input)
     end; 
 end);
 
-return Mouse;
+return _Mouse;
