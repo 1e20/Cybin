@@ -4,6 +4,7 @@ local Sleep = task.wait;
 
 local Mouse, __Mouse = {}, newproxy(true);
 getmetatable(__Mouse).__index = Mouse;
+getmetatable(__Mouse).__namecall = Mouse;
 Mouse.Position = UserInputService:GetMouseLocation();
 
 function Mouse:Move(Position, Step) Step = Step or 1
