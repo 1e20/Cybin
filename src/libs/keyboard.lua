@@ -39,7 +39,7 @@ function Keyboard:Bind(Data) -- Binds to a Callback and a Toggle
     function Bind:Invoke(Input, Type)
         if (self.Debug) then warn(('Bind [%s] Invoked'):format(self.Name)) end;
 
-        if (type(self.Key) == 'table' and self.Key[Bind.Index] == Input.KeyCode.Name) then
+        if (type(self.Key) == 'table' and self.Key[Bind.Index] == Input.KeyCode.Name and Type == self.Type) then
             if (Bind.Index == #Bind.Key) then 
                 self:BoolToggle(); self.Callback(self.Bool);
                 Bind.Index = 1;
