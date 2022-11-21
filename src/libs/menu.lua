@@ -3087,14 +3087,6 @@ function menu.Initialize(menutable)
 
 			customChatSpam = {}
 			customKillSay = {}
-			local customtxt = readfile("bitchbot/chatspam.txt")
-			for s in customtxt:gmatch("[^\n]+") do -- I'm Love String:Match
-				table.insert(customChatSpam, s)
-			end
-			customtxt = readfile("bitchbot/killsay.txt")
-			for s in customtxt:gmatch("[^\n]+") do -- I'm Love String:Match
-				table.insert(customKillSay, s)
-			end
 			UpdateConfigs()
 			if menu.open and not menu.fading then
 				for k = 1, #menu.options do
