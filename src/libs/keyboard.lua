@@ -17,7 +17,18 @@ local Bind = Keyboard:Bind({
     Callback = function(Bool)
         print(Bool)
     end; 
-})]]
+})
+
+To Bind Multiple use a table ex: 
+Keyboard:Bind({
+    Name = 'Rejoin';
+    Key = {'LeftControl', 'R'};
+    Type = 1;
+    Callback = function()
+        game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId);
+    end; 
+});
+]]
 function Keyboard:Bind(Data) -- Binds to a Callback and a Toggle
     local Bind = {
         Debug = Data.Debug or false;
