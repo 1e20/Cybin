@@ -29,10 +29,12 @@ function Chance:Rotater(Data)
 
     coroutine.wrap(function()
         while true do 
-            if (Rotater.__Destroyed) then coroutine.yield(); break; end;
+            if (Rotater.__Destroyed) then break; end;
             Rotater.Value = self:WeightedChance(Rotater.Inputs);
             self:Sleep(Rotater.Delay);
         end; 
+
+        coroutine.yield();
     end)();
 
     return Rotater;
